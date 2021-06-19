@@ -18,7 +18,7 @@ import {
 import showPwdImg from "./show-password.svg";
 import hidePwdImg from "./hide-password.svg";
 
-const BACKEND_API = "https://profiles-machado.herokuapp.com";
+const BACKEND_API = process.env.REACT_APP_BACKEND;
 
 export default function LoginForm(props) {
   const {
@@ -30,14 +30,12 @@ export default function LoginForm(props) {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   const onSubmit = (data) => {
-    console.log(data);
     setLoading(true);
     axiosWithAuth()
       .post(`${BACKEND_API}/api/auth/login`, data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         props.history.push("/dashboard");
-        window.location.reload();
       })
       .catch(handleErrors);
   };

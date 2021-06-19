@@ -18,7 +18,7 @@ import {
 import showPwdImg from "./show-password.svg";
 import hidePwdImg from "./hide-password.svg";
 
-const BACKEND_API = "https://profiles-machado.herokuapp.com";
+const BACKEND_API = process.env.REACT_APP_BACKEND;
 
 export default function RegisterForm(props) {
   const {
