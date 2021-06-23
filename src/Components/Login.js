@@ -17,6 +17,7 @@ import {
 
 import showPwdImg from "./show-password.svg";
 import hidePwdImg from "./hide-password.svg";
+import Nav from "./Nav";
 
 const BACKEND_API = process.env.REACT_APP_BACKEND;
 
@@ -35,6 +36,8 @@ export default function LoginForm(props) {
       .post(`${BACKEND_API}/api/auth/login`, data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("username", res.data.user.username);
+        console.log(res);
         props.history.push("/dashboard");
       })
       .catch(handleErrors);
@@ -51,92 +54,96 @@ export default function LoginForm(props) {
   }
 
   return (
-    <Container>
-      <Login>Login</Login>
-      <Body>Enter your username and password.</Body>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Styledform>
-          <Formgroup>
-            {/* Start of UserName field */}
-            {/* <Labels htmlFor="username"> */}
-            User Name
-            <Inputs
-              type="text"
-              name="username"
-              placeholder="username"
-              {...register("username", {
-                required: true,
-                minLength: 7,
-                maxLength: 7,
-              })}
-            />
-            {/* </Labels> */}
-            {errors.username && errors.username.type === "required" && (
-              <h2 style={{ color: "red", marginBottom: "30px" }}>
-                Please enter a username
-              </h2>
-            )}
-            {errors.username && errors.username.type === "minLength" && (
-              <h2 style={{ color: "red", marginBottom: "30px" }}>
-                Username is too short
-              </h2>
-            )}
-            {errors.username && errors.username.type === "maxLength" && (
-              <h2 style={{ color: "red", marginBottom: "30px" }}>
-                Username is too long
-              </h2>
-            )}
-            {/* End of UserName Field */}
-            {/* Start of Password Field */}
-            <Labels htmlFor="password">
-              <span> </span>
-              Password
-            </Labels>
-            <PwdContainer>
+    <div>
+      <Nav />
+
+      <Container>
+        <Login>Login</Login>
+        <Body>Enter your username and password.</Body>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Styledform>
+            <Formgroup>
+              {/* Start of UserName field */}
+              {/* <Labels htmlFor="username"> */}
+              User Name
               <Inputs
-                type={isRevealPwd ? "text" : "password"}
-                placeholder="Password"
-                name="password"
-                {...register("password", {
+                type="text"
+                name="username"
+                placeholder="username"
+                {...register("username", {
                   required: true,
                   minLength: 7,
                   maxLength: 7,
                 })}
               />
-              {errors.password && errors.password.type === "required" && (
-                <h3 style={{ color: "red", marginBottom: "30px" }}>
-                  Password is required
-                </h3>
+              {/* </Labels> */}
+              {errors.username && errors.username.type === "required" && (
+                <h2 style={{ color: "red", marginBottom: "30px" }}>
+                  Please enter a username
+                </h2>
               )}
-              {errors.password && errors.password.type === "minLength" && (
-                <h3 style={{ color: "red", marginBottom: "30px" }}>
-                  Password is too short - 7 characters
-                </h3>
+              {errors.username && errors.username.type === "minLength" && (
+                <h2 style={{ color: "red", marginBottom: "30px" }}>
+                  Username is too short
+                </h2>
               )}
-              {/* End of password field  */}
-              <PwdImage
-                title={isRevealPwd ? "Hide password" : "Show password"}
-                src={isRevealPwd ? hidePwdImg : showPwdImg}
-                onClick={() => setIsRevealPwd((prevState) => !prevState)}
-              />
-            </PwdContainer>
-          </Formgroup>
+              {errors.username && errors.username.type === "maxLength" && (
+                <h2 style={{ color: "red", marginBottom: "30px" }}>
+                  Username is too long
+                </h2>
+              )}
+              {/* End of UserName Field */}
+              {/* Start of Password Field */}
+              <Labels htmlFor="password">
+                <span> </span>
+                Password
+              </Labels>
+              <PwdContainer>
+                <Inputs
+                  type={isRevealPwd ? "text" : "password"}
+                  placeholder="Password"
+                  name="password"
+                  {...register("password", {
+                    required: true,
+                    minLength: 7,
+                    maxLength: 7,
+                  })}
+                />
+                {errors.password && errors.password.type === "required" && (
+                  <h3 style={{ color: "red", marginBottom: "30px" }}>
+                    Password is required
+                  </h3>
+                )}
+                {errors.password && errors.password.type === "minLength" && (
+                  <h3 style={{ color: "red", marginBottom: "30px" }}>
+                    Password is too short - 7 characters
+                  </h3>
+                )}
+                {/* End of password field  */}
+                <PwdImage
+                  title={isRevealPwd ? "Hide password" : "Show password"}
+                  src={isRevealPwd ? hidePwdImg : showPwdImg}
+                  onClick={() => setIsRevealPwd((prevState) => !prevState)}
+                />
+              </PwdContainer>
+            </Formgroup>
 
-          <div className="footer">
-            {!isLoading && <Button>Login</Button>}
+            <div className="footer">
+              {!isLoading && <Button>Login</Button>}
 
-            {isLoading && (
-              <>
-                <Button>
-                  <i disabled={isLoading}>Logging in..</i>
-                </Button>
+              {isLoading && (
+                <>
+                  <Button>
+                    <i disabled={isLoading}>Logging in..</i>
+                  </Button>
 
-                <p>Please allow a few seconds while server wakes up</p>
-              </>
-            )}
-          </div>
-        </Styledform>
-      </form>
-    </Container>
+                  <p>Please allow a few seconds while server wakes up</p>
+                </>
+              )}
+            </div>
+          </Styledform>
+        </form>
+      </Container>
+    </div>
   );
 }
