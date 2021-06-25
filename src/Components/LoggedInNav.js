@@ -11,6 +11,10 @@ const NavStyles = styled.div`
   box-shadow: 10px 5px 5px grey;
 `;
 
+const Links = styled.li`
+  list-style-type: none;
+  margin-left: 20px;
+`;
 function LoggedInNav() {
   return (
     <NavStyles>
@@ -18,7 +22,7 @@ function LoggedInNav() {
         Logout
       </Link>
 
-      <li>Welcome back {username} </li>
+      <Links>Welcome back {username} </Links>
     </NavStyles>
   );
 }
