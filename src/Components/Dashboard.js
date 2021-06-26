@@ -2,6 +2,7 @@ import React from "react";
 import LoggedInNav from "./LoggedInNav";
 
 const username = localStorage.getItem("username");
+const name = localStorage.getItem("first_name");
 
 function Dashboard() {
   if (!username) {
@@ -15,7 +16,7 @@ function Dashboard() {
     return (
       <>
         <LoggedInNav />
-        <h1>Hello {username}</h1>
+        <h1>Hello {name}</h1>
       </>
     );
   }

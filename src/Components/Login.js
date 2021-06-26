@@ -37,7 +37,7 @@ export default function LoginForm(props) {
       .then((res) => {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.user.username);
-        console.log(res);
+        localStorage.setItem("first_name", res.data.user.first_name);
         props.history.push("/dashboard");
       })
       .catch(handleErrors);
@@ -72,7 +72,7 @@ export default function LoginForm(props) {
                 placeholder="username"
                 {...register("username", {
                   required: true,
-                  minLength: 7,
+                  minLength: 3,
                   maxLength: 7,
                 })}
               />

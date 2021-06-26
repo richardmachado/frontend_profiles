@@ -15,12 +15,17 @@ const Links = styled.li`
   list-style-type: none;
   margin-left: 20px;
 `;
+
+const NavLinks = styled(Link)`
+  text-decoration: none;
+`;
+
 function LoggedInNav() {
   return (
     <NavStyles>
-      <Link to="/" onClick={() => localStorage.clear()}>
+      <NavLinks to="/" onClick={() => localStorage.clear()}>
         Logout
-      </Link>
+      </NavLinks>
 
       <Links>Welcome back {username} </Links>
     </NavStyles>

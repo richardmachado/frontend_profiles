@@ -37,6 +37,8 @@ export default function RegisterForm(props) {
       .post(`${BACKEND_API}/api/auth/register`, data)
       .then((res) => {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("username", res.data.user.username);
+        localStorage.setItem("first_name", res.data.user.first_name);
         props.history.push("/dashboard");
         window.location.reload();
       })
@@ -62,16 +64,69 @@ export default function RegisterForm(props) {
         <form onSubmit={handleSubmit(onSubmit)}>
           <Styledform>
             <Formgroup>
+              First Name
+              <Inputs
+                type="text"
+                name="first_name"
+                placeholder="First Name"
+                {...register("first_name", {
+                  required: true,
+                  minLength: 1,
+                  maxLength: 24,
+                })}
+              />
+              {errors.first_name && errors.first_name.type === "required" && (
+                <h2 style={{ color: "red", marginBottom: "30px" }}>
+                  Please enter your first name
+                </h2>
+              )}
+              Last Name
+              <Inputs
+                type="text"
+                name="last_name"
+                placeholder="Last Name"
+                {...register("last_name", {
+                  required: true,
+                  minLength: 1,
+                  maxLength: 24,
+                })}
+              />
+              {errors.last_name && errors.last_name.type === "required" && (
+                <h2 style={{ color: "red", marginBottom: "30px" }}>
+                  Please enter your last name
+                </h2>
+              )}
+              Phone Number
+              <Inputs
+                type="text"
+                name="telephone"
+                placeholder="Phone #"
+                {...register("telephone", {
+                  required: true,
+                  minLength: 9,
+                  maxLength: 24,
+                })}
+              />
+              {errors.telephone && errors.telephone.type === "required" && (
+                <h2 style={{ color: "red", marginBottom: "30px" }}>
+                  Phone number error - not enough digits
+                </h2>
+              )}
+              {errors.telephone && errors.telephone.type === "minLength" && (
+                <h2 style={{ color: "red", marginBottom: "30px" }}>
+                  Phone number error - not enough digits
+                </h2>
+              )}
               {/* Start of UserName field */}
               {/* <Labels htmlFor="username"> */}
-              User Name
+              Select a User Name
               <Inputs
                 type="text"
                 name="username"
                 placeholder="username"
                 {...register("username", {
                   required: true,
-                  minLength: 7,
+                  minLength: 3,
                   maxLength: 7,
                 })}
               />
@@ -95,7 +150,7 @@ export default function RegisterForm(props) {
               {/* Start of Password Field */}
               <Labels htmlFor="password">
                 <span> </span>
-                Password
+                Choose a Password
               </Labels>
               <PwdContainer>
                 <Inputs
