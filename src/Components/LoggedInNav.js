@@ -1,8 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-
-const username = localStorage.getItem("username");
 
 const NavStyles = styled.div`
   display: flex;
@@ -21,6 +19,7 @@ const NavLinks = styled(Link)`
 `;
 
 function LoggedInNav() {
+  const [username] = useState(localStorage.getItem("username"));
   return (
     <NavStyles>
       <NavLinks to="/" onClick={() => localStorage.clear()}>

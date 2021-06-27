@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import LoggedInNav from "./LoggedInNav";
 
-const username = localStorage.getItem("username");
-const name = localStorage.getItem("first_name");
-
 function Dashboard() {
-  if (!username) {
+  const [first_name] = useState(localStorage.getItem("first_name"));
+  if (first_name === null) {
     return (
       <>
         <LoggedInNav />
@@ -16,7 +14,7 @@ function Dashboard() {
     return (
       <>
         <LoggedInNav />
-        <h1>Hello {name}</h1>
+        <h1>Hello {first_name}</h1>
       </>
     );
   }

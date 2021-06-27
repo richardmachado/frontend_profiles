@@ -40,7 +40,6 @@ export default function RegisterForm(props) {
         localStorage.setItem("username", res.data.user.username);
         localStorage.setItem("first_name", res.data.user.first_name);
         props.history.push("/dashboard");
-        window.location.reload();
       })
       .catch(handleErrors);
   };
