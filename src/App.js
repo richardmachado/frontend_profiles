@@ -4,6 +4,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Dashboard from "./Components/Dashboard";
+import PrivateRoute from "./utils/PrivateRoutes";
 
 export default function App() {
   return (
@@ -14,7 +15,8 @@ export default function App() {
         <Route path="/register" component={Register} />
 
         {/* PrivateRoutes */}
-        <Route path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+
         {/* Reroute invalid links to home */}
         <Route path="*" component={Home} />
       </Switch>

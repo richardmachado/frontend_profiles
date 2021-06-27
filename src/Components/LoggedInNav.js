@@ -25,7 +25,6 @@ function LoggedInNav() {
       <NavLinks to="/" onClick={() => localStorage.clear()}>
         Logout
       </NavLinks>
-
       <Links>Welcome back {username} </Links>
     </NavStyles>
   );
