@@ -96,10 +96,11 @@ export default function RegisterForm(props) {
                 </h2>
               )}
               Phone Number
+              <small>Format: 123456789</small>
               <Inputs
                 type="text"
                 name="telephone"
-                placeholder="Phone #"
+                placeholder="Phone"
                 {...register("telephone", {
                   required: true,
                   minLength: 9,

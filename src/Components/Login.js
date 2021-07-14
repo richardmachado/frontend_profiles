@@ -73,7 +73,7 @@ export default function LoginForm(props) {
                 {...register("username", {
                   required: true,
                   minLength: 3,
-                  maxLength: 7,
+                  maxLength: 10,
                 })}
               />
               {/* </Labels> */}
