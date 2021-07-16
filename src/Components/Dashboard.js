@@ -2,16 +2,17 @@ import React, { useState, useEffect } from "react";
 import LoggedInNav from "./LoggedInNav";
 import axios from "axios";
 
+const BACKEND_API = process.env.REACT_APP_BACKEND;
+
 export default function Dashboard() {
   const [getPosts, setPosts] = useState([]);
   const [first_name] = useState(localStorage.getItem("first_name"));
 
   useEffect(() => {
     axios
-      .get("https://profiles-machado.herokuapp.com/posts")
+      .get(`${BACKEND_API}/posts`)
       .then((response) => {
-        setPosts( response.data );
-        // console.log(response.data)
+        setPosts(response.data);
       })
       .catch((err) => {
         console.log(err);
@@ -30,7 +31,7 @@ export default function Dashboard() {
             <h2>{allposts.title}</h2>
             <h3>{allposts.body}</h3>
           </div>
-        )
+        );
       })}
     </>
   );
