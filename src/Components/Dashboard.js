@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import LoggedInNav from "./LoggedInNav";
+import LoggedInNav from "./Nav/LoggedInNav";
 import axios from "axios";
 
 const BACKEND_API = process.env.REACT_APP_BACKEND;
