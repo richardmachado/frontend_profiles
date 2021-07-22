@@ -6,30 +6,39 @@ const BACKEND_API = process.env.REACT_APP_BACKEND;
 
 export default function Dashboard() {
   const [getPosts, setPosts] = useState([]);
+  const [length, setLength] = useState(0);
   const [first_name] = useState(localStorage.getItem("first_name"));
+  const [id] = localStorage.getItem("id");
 
   useEffect(() => {
     axios
-      .get(`${BACKEND_API}/posts`)
+      .get(`${BACKEND_API}/posts/myposts/${id}`)
       .then((response) => {
         setPosts(response.data);
+        setLength(response.data.length);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [first_name, id]);
+  if (setPosts === null) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <>
       <LoggedInNav />
       <h1>Hello {first_name}</h1>
-      <h2>Here are all posts</h2>
-      {getPosts.map((allposts) => {
+      <h2>Here are your posts</h2>
+
+      {length === 0 && <h2>You have no posts</h2>}
+
+      {getPosts.map((myposts) => {
         return (
-          <div key={allposts.id}>
-            <h1>id: {allposts.id}</h1>
-            <h2>{allposts.title}</h2>
-            <h3>{allposts.body}</h3>
+          <div key={myposts.id}>
+            <h1>id: {myposts.id}</h1>
+            <h2>{myposts.title}</h2>
+            <h3>{myposts.body}</h3>
           </div>
         );
       })}

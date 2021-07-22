@@ -4,6 +4,7 @@ import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
 import Dashboard from "./Components/Dashboard";
+import MyPosts from "./Components/MyPosts";
 import PrivateRoute from "./utils/PrivateRoutes";
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
 
         {/* PrivateRoutes */}
         <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/myposts" component={MyPosts} />
 
         {/* Reroute invalid links to home */}
         <Route path="*" component={Home} />

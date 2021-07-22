@@ -38,6 +38,7 @@ export default function LoginForm(props) {
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("username", res.data.user.username);
         localStorage.setItem("first_name", res.data.user.first_name);
+        localStorage.setItem("id", res.data.user.id);
         props.history.push("/dashboard");
       })
       .catch(handleErrors);
