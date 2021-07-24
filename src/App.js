@@ -3,8 +3,8 @@ import { Switch, Route } from "react-router-dom";
 import Home from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
-import Dashboard from "./Components/Dashboard";
-import MyPosts from "./Components/MyPosts";
+import Dashboard from "./Components/DashBoard/Dashboard";
+import MyPosts from "./Components/DashBoard/MyPosts";
 import AddPosts from "./Components/AddPosts";
 import PrivateRoute from "./utils/PrivateRoutes";
 

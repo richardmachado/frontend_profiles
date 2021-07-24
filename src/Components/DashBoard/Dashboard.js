@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import LoggedInNav from "./Nav/LoggedInNav";
+import LoggedInNav from "../Nav/LoggedInNav";
 import axios from "axios";
+import { AllPosts, Post } from "./styles";
 
 const BACKEND_API = process.env.REACT_APP_BACKEND;
 
@@ -24,15 +25,16 @@ export default function Dashboard() {
       <LoggedInNav />
       <h1>Hello {first_name}</h1>
       <h2>Here are all posts</h2>
-      {getPosts.map((allposts) => {
-        return (
-          <div key={allposts.id}>
-            <h1>id: {allposts.id}</h1>
-            <h2>{allposts.title}</h2>
-            <h3>{allposts.body}</h3>
-          </div>
-        );
-      })}
+      <AllPosts>
+        {getPosts.map((allposts) => {
+          return (
+            <Post key={allposts.id}>
+              <h2>{allposts.title}</h2>
+              <h3>{allposts.body}</h3>
+            </Post>
+          );
+        })}
+      </AllPosts>
     </>
   );
 }
