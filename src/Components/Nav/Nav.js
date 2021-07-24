@@ -1,19 +1,17 @@
 import React from "react";
 
-import { NavStyles, Links, NavLinks } from "./styles";
+import { NavStyles, Links } from "./styles";
 
 function Nav() {
   return (
     <NavStyles>
       <div>
-        <NavLinks to="/">Home</NavLinks>
+        <Links to="/">Home</Links>
       </div>
-      <Links>
-        <NavLinks to="/login">Login</NavLinks>
-      </Links>
-      <Links>
-        <NavLinks to="/register">Register</NavLinks>
-      </Links>
+
+      <Links to="/login">Login</Links>
+
+      <Links to="/register">Register</Links>
     </NavStyles>
   );
 }

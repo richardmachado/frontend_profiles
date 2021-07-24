@@ -15,8 +15,8 @@ import {
   PwdImage,
 } from "../styles2/LoginStyles";
 
-import showPwdImg from "./show-password.svg";
-import hidePwdImg from "./hide-password.svg";
+import showPwdImg from "../styles2/show-password.svg";
+import hidePwdImg from "../styles2/hide-password.svg";
 import Nav from "./Nav/Nav";
 
 const BACKEND_API = process.env.REACT_APP_BACKEND;
